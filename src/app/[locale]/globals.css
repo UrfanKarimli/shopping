@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer base {
+    :root {
+        --background-light: #ffffff;
+        --background-light-secondary: #f9f9f9;
+        --text-light-primary: #1A202C ;
+        --text-light-secondary: #718096 ;
+
+        --background-dark: #121212;
+        --background-dark-secondary: #1e1e1e;
+        --text-dark-primary: #ffffff;
+        --text-dark-secondary: #bbbbbb;
+    }
+
+    body {
+        @apply bg-[var(--background-light)] text-[var(--text-light-primary)];
+    }
+
+    .dark {
+        @apply bg-[var(--background-dark)] text-[var(--text-dark-primary)];
+    }
+}

@@ -1,0 +1,13 @@
+{
+    "HomePage": {
+        "title": "Salam Dünya!",
+        "about": "Haqqımızda səhifəsinə get"
+    },
+    "Navigation": {
+      "home": "Ana səhifə"
+    },
+    "NotFoundPage": {
+      "title": "Səhifə tapılmadı",
+      "description": "Oops! Görünür, mövcud olmayan bir səhifəyə rast gəldiniz!"
+    }
+}

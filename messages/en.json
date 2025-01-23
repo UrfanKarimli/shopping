@@ -1,0 +1,13 @@
+{
+    "HomePage": {
+        "title": "Hello world!",
+        "about": "Go to the about page"
+    },
+    "Navigation": {
+      "home": "Home"
+    },
+    "NotFoundPage": {
+      "title": "Page Not Found",
+      "description": "Oops! It seems like you've stumbled upon a page that doesn't exist !"
+    }
+}

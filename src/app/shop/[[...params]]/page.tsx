@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import React from 'react'
-import Fill from '../../../../../public/fill.jpg'
+import Fill from '../../../../public/fill.jpg'
 import { Rate } from 'antd';
 import ItemCard from '@/components/item-card';
 export default function ShopPage() {

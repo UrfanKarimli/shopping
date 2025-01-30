@@ -1,16 +1,17 @@
-import { getRequestConfig } from 'next-intl/server';
-import { routing } from './routing';
+import { cookies } from 'next/headers';
 import { loadMessages } from '@/utils/loadMessages';
 
-export default getRequestConfig(async ({ requestLocale }) => {
-  // requestLocale artıq Promise olaraq gəlir, ona görə await istifadə etmək lazımdır
-  const locale: string = (await requestLocale) || routing.defaultLocale;
+export default async function getRequestConfig() {
+  // cookies API-dən locale-ni alırıq
+  const cookieStore = await cookies(); // await əlavə edirik
 
-  // Mesajları yüklə
+  const locale = cookieStore.get('locale')?.value || 'az'; // locale cookie-sini alırıq, yoxsa default olaraq 'az'
+
+  // Mesajları yükləyirik
   const messages = await loadMessages(locale);
 
   return {
-    locale,  // 'locale' artıq string tipində olacaq
+    locale,
     messages,
   };
-});
+}

@@ -1,9 +1,9 @@
 import { useTranslations } from 'next-intl';
-import { Link } from '@/i18n/routing';
 import LocaleSwitcher from './local-switcher';
 import { IoStorefrontOutline } from "react-icons/io5";
 import SearchModal from './search-modal';
 import Profile from './profile';
+import Link from 'next/link';
 
 export default function Header() {
   const t = useTranslations('header');

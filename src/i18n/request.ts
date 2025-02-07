@@ -1,21 +1,20 @@
-import {getRequestConfig} from 'next-intl/server';
-import {routing} from './routing';
-enum Locale {
-  AZ = "az",
-  EN = "en",
-}
- 
-export default getRequestConfig(async ({requestLocale}) => {
-  // This typically corresponds to the `[locale]` segment
-  let locale = await requestLocale;
- 
-  // Ensure that a valid locale is used
-  if (!locale || !routing.locales.includes(locale as Locale)) {
-    locale = routing.defaultLocale;
-  }
- 
+import { cookies } from 'next/headers';
+import { loadMessages } from '@/utils/loadMessages';
+// import { store } from '@/store/store';
+// import { setLocale } from '@/store/localeSlice';
+
+export default async function getRequestConfig() {
+  // cookies API-dən locale-ni alırıq
+  const cookieStore = await cookies(); // await əlavə edirik
+
+  const locale = cookieStore.get('sifarish-locale')?.value || 'az'; // locale cookie-sini alırıq, yoxsa default olaraq 'az'
+
+  // Mesajları yükləyirik
+  const messages = await loadMessages(locale);
+  // store.dispatch(setLocale(locale));
   return {
     locale,
-    messages: (await import(`../../messages/${locale}.json`)).default
+    messages,
   };
-});
+}
+

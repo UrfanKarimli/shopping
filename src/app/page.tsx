@@ -1,10 +1,11 @@
-import SecondCarusel from '@/components/second-carusel';
+import Home from "@/app/views/home/home-page";
 
-export default function Home() {
+export default function HomePage() {
+
+
   return (
     <div className="container mt-20">
-      <h3 className=' text-4xl text-headText-light my-3'>En cox sifaris verilenler</h3>
-      <SecondCarusel />
+      <Home />
     </div>
   );
 }

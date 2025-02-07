@@ -1,7 +1,7 @@
 import { Carousel } from "antd";
-import './MyCarusel.css'
+import '../MyCarusel.css'
 import Image from "next/image";
-import vape from '../../public/vape.jpg'
+import vape from '../../../public/vape.jpg'
 import Link from "next/link";
 
 const MyCarusel: React.FC = () => (

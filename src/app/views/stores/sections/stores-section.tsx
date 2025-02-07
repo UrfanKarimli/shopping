@@ -1,7 +1,9 @@
 import Image from 'next/image'
-import Bravo from '../../../../public/Bravo.jpg'
-import Fill from '../../../../public/fill.jpg'
+import Bravo from '../../../../../public/Bravo.jpg'
+import Fill from '../../../../../public/fill.jpg'
 import Link from 'next/link'
+
+
 export default function StoresSections() {
 
     return (

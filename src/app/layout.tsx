@@ -1,31 +1,24 @@
 import { NextIntlClientProvider } from 'next-intl';
-import { getMessages } from 'next-intl/server';
+import {getLocale, getMessages } from 'next-intl/server';
 import type { Metadata } from 'next';
-import { cookies } from 'next/headers'; // ✅ Next.js cookies API
 import './globals.css';
 import Header from '@/components/header';
 import { AntdRegistry } from '@ant-design/nextjs-registry';
 import { Suspense } from 'react';
 import Loading from './loading';
-interface Locale {
-  locale?: string | undefined
-}
+import { Providers } from './providers';
+
+
 export const metadata: Metadata = {
   title: 'Shopping commerce site',
   description: 'Online shopping and delivery platform',
 };
 
-export default async function LocaleLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  // ✅ Next.js-in `cookies()` API-si ilə dili götürürük
-  const cookieStore = await cookies();
-  const locale = cookieStore.get('locale')?.value || 'az'; // Cookie varsa, götür; yoxdursa, default 'az'
+export default async function LocaleLayout({ children}: {children: React.ReactNode;}) {
 
   // Mesajların alınması
-  const messages = await getMessages(locale as Locale);
+  const locale = await getLocale();
+  const messages = await getMessages();
 
   return (
     <html lang={locale}>
@@ -33,6 +26,7 @@ export default async function LocaleLayout({
         <link rel="icon" href="/favicon.ico" />
       </head>
       <body>
+        <Providers>
         <NextIntlClientProvider messages={messages}>
           <AntdRegistry>
             <Header />
@@ -41,6 +35,8 @@ export default async function LocaleLayout({
             </Suspense>
           </AntdRegistry>
         </NextIntlClientProvider>
+        </Providers>
+
       </body>
     </html>
   );

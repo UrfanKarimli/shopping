@@ -51,6 +51,11 @@ body::-webkit-scrollbar-button {
 
 }
 
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
 @layer base {
     :root {
         --background-light: #ffffff;

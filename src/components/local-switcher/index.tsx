@@ -11,14 +11,12 @@ export default function LocaleSwitcher() {
 
     // Cookie-dən dili oxu
     const [localeActive, setLocaleActive] = useState(() => {
-        return Cookies.get('locale') || 'az'; // Default olaraq 'az' təyin et
+        return Cookies.get('sifarish-locale') || 'az'; // Default olaraq 'az' təyin et
     });
-
-    console.log("localeActive (before useEffect):", localeActive);
 
     // Cookie-də olan dili state-ə tətbiq et (bunu yalnız component mount olunduqda edirik)
     useEffect(() => {
-        const storedLocale = Cookies.get('locale');
+        const storedLocale = Cookies.get('sifarish-locale');
         if (storedLocale) {
             setLocaleActive(storedLocale); // State-i yenilə
         }
@@ -26,7 +24,7 @@ export default function LocaleSwitcher() {
 
     const onSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
         const nextLocale = e.target.value;
-        Cookies.set('locale', nextLocale); // Yeni dili cookie-yə yaz
+        Cookies.set('sifarish-locale', nextLocale); // Yeni dili cookie-yə yaz
 
         startTransition(() => {
             // Yeni dili URL-də tətbiq etmək üçün
@@ -45,12 +43,12 @@ export default function LocaleSwitcher() {
         <label className="border-2 rounded">
             <select
                 value={localeActive}
-                className="bg-transparent py-2"
+                className="bg-transparent pl-5 py-2 border-none outline-none w-full appearance-none"
                 onChange={onSelectChange}
                 disabled={isPending}
             >
-                <option value="az">Az</option>
-                <option value="en">En</option>
+                <option value="az">Azerbaijan</option>
+                <option value="en">Englilsh</option>
             </select>
         </label>
     );

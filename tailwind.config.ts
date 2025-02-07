@@ -58,7 +58,16 @@ export default {
           light: '#FCFDFD',
           dark: '#323D4E'
         },
-      }
+      },
+       animation: {
+                slide: "slide 1.5s linear infinite",
+            },
+            keyframes: {
+                slide: {
+                    '0%': { transform: 'translateX(-100%)' },
+                    '100%': { transform: 'translateX(100%)' },
+                },
+            },
     },
   },
   plugins: [],

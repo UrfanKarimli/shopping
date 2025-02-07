@@ -1,36 +1,75 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Next.js Project
 
-## Getting Started
+Bu layihə Next.js öyrənmə məqsədi ilə yaradılıb və inkşaf etdirilib. Layihədə modern frontend texnologiyalarından istifadə olunmuşdur.
 
-First, run the development server:
+This project was created and developed for learning Next.js. It utilizes modern frontend technologies.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 🌟 Texnologiyalar | Technologies
+
+- **Next.js** (App Router)
+- **TypeScript**
+- **Tailwind CSS**
+- **Redux Toolkit & RTK Query**
+- **Ant Design**
+- **next-intl** (İçində beynəlxalqlaşdırma | Internationalization)
+- **react-icons**
+
+## 📚 Layihə Strukturu | Project Structure
+
+```plaintext
+public/            # Şəkillər və statik fayllar | Images and static files
+
+src/
+  app/             # Next.js app router strukturunda səhifələr | Pages in Next.js App Router
+  components/      # Yenidən istifadə olunan komponentlər | Reusable components
+  i18n/            # Beynəlxalqlaşdırma üçün tərtibatlar | Internationalization setup
+  services/        # API ilə əlaqə və digər xidmətlər | API calls and other services
+  store/           # Global state managment (Redux Toolkit)
+  utils/           # Yardımçı funksiyalar | Utility functions
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Quraşdırma və İşə Salma | Installation & Running
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. **Depoyu klonlayın | Clone the repository:**
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+   ```sh
+   git clone https://github.com/sizin-layihe.git
+   cd sizin-layihe
+   ```
 
-## Learn More
+2. **Lazımi asılılıqları quraşdırın | Install dependencies:**
 
-To learn more about Next.js, take a look at the following resources:
+   ```sh
+   pnpm install  # və ya npm install / yarn install
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3. **İnkişaf rejimində işə salın | Start in development mode:**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+   ```sh
+   pnpm dev  # və ya npm run dev / yarn dev
+   ```
 
-## Deploy on Vercel
+4. **Proqramı brauzerdə açın | Open in browser:**
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   ```sh
+   http://localhost:3000
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🌐 Beynəlxalqlaşdırma | Internationalization (i18n)
+
+Layihədə `next-intl` istifadə edilərək çoxdilli dəstək təmin edilmişdir. Dil seçimlərini `i18n/` qovluğunda tapa bilərsiniz.
+
+The project supports multiple languages using `next-intl`. Language configurations are located in the `i18n/` folder.
+
+## ⚡ State Management
+
+Redux Toolkit və RTK Query istifadə edərək, global state idarə olunur və API sorğuları optimallaşdırılır.
+
+State management is handled using Redux Toolkit & RTK Query for optimized API requests and state management.
+
+## ✨ UI Kitabxanası | UI Library
+
+Layihədə **Ant Design** istifadəyə verilmişdir. UI komponentlərini sürətli və effektiv şəkildə yaratmaq üçün istifadə olunur.
+
+Ant Design is used as the UI library to create efficient and beautiful components.
+

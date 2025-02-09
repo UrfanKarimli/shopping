@@ -9,6 +9,7 @@ import CustomLink from '../custom-link';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
 import { useEffect, useState } from "react";
+import LocationComponent from '../user-location';
 
 export default function Header() {
   const selectedData = useSelector((state: RootState) => state.selectedItems.selectedData);
@@ -24,7 +25,7 @@ export default function Header() {
     <header className=''>
       <div className='border-b border-b-border-light py-4 bg-[#FFF9E5]'>
         <div className='flex items-center justify-between container w-full'>
-          <nav className='flex items-center gap-10'>
+          <div className='flex items-center gap-10'>
             <CustomLink href='/' className='font-bold text-3xl text-headText-light'>SiFarish</CustomLink>
             <CustomLink href='/stores' className='flex items-center gap-1 font-semibold text-xl text-headText-light'>
               {t('stores')} <IoStorefrontOutline />
@@ -36,7 +37,8 @@ export default function Header() {
                 <sup className='text-headText-light text-[12px] font-bold'>{cartCount}</sup>
               )}
             </CustomLink>
-          </nav>
+            <LocationComponent />
+          </div>
           <SearchModal />
           <div className='flex items-center gap-4'>
             <Profile />

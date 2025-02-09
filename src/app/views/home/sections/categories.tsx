@@ -12,10 +12,10 @@ export default function Categories() {
                             <div className="group-hover:border-[#ff4f08] mb-1 flex items-center justify-center bg-white border border-solid border-[#eaebf2] rounded-[18%] w-[90px] h-[90px] transition-all duration-300 ease-in-out">
                                 <Image
                                     src={'/vape.jpg'}
-                                    alt=""
+                                    alt="vape"
                                     width={48}
                                     height={48}
-                                    className=" object-cover object-center" />
+                                    className=" w-12 h-12 object-cover object-center" />
                             </div>
                             <span className="font-arial w-[90px] text-center flex justify-center text-sm text-[#212c3a] group-hover:text-[#ff4f08] align-top transition-all duration-300 ease-in-out">
                                 kategoriya {item}

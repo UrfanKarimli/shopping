@@ -2,14 +2,13 @@
 
 import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
-import { Rate } from 'antd'
 import Link from 'next/link'
 import { PiHeartStraightDuotone, PiHeartStraightFill } from 'react-icons/pi';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleLikedAd } from '@/store/liketItemSlice';
 import { RootState } from '@/store/store'
 import { addToCart } from '@/store/selectItemSlice'
-import { message } from 'antd';
+import { message, Tooltip, Rate } from 'antd';
 interface Product {
     id: number;
     title: string;
@@ -55,14 +54,13 @@ export default function ItemCard({ item }: { item: Product }) {
     return (
         <div className=' relative w-full h-[290p]   rounded-[7px] p-2'>{contextHolder}
             <Link href={`#`} target="_blank" rel="noopener noreferrer" className='relative font-arial w-full h-full rounded-[7px] align-top  flex flex-col bg-white overflow-hidden hover:shadow-shadow-hover shadow-custom-light'>
-                <div className="img-box relative  h-[181px]  overflow-hidden">
+                <div className="img-box relative w-full  h-[181px]  overflow-hidden flex items-center justify-center">
                     <Image
                         src={item.image}
                         alt={item.title}
-                        className='object-center object-cover '
+                        className='object-center object-cover h-full w-[200px] '
                         width={200}
                         height={181}
-                        style={{ width: 'auto', height: 'auto' }}
                         priority
                     />
                     <span
@@ -77,15 +75,20 @@ export default function ItemCard({ item }: { item: Product }) {
                     <span> <Rate disabled defaultValue={item.rating.rate} />({item.rating.rate})</span>
                 </div>
             </Link>
+
             <button
                 onClick={handleLikeToggle}
                 className='bg-transparent absolute top-[10px] right-[10px] z-10'
             >
-                {isLiked ? (
-                    <PiHeartStraightFill className='h-7 w-7 text-[#ff4f08]' />
-                ) : (
-                    <PiHeartStraightDuotone className='h-7 w-7 text-[#c7c7c7]' />
-                )}
+                <Tooltip title={isLiked ? "Favoritlərdən sil" : "Favoritlərə əlavə et"} color='#ff4f08' arrow={false}>
+                    <span>
+                        {isLiked ? (
+                            <PiHeartStraightFill className='h-7 w-7 text-[#ff4f08]' />
+                        ) : (
+                            <PiHeartStraightDuotone className='h-7 w-7 text-[#c7c7c7]' />
+                        )}
+                    </span>
+                </Tooltip>
             </button>
             <button
                 onClick={addTheBox}

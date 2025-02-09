@@ -49,6 +49,10 @@ export default {
         borderSec: {
           light: '#E0E0E0',
           dark: '#cfcfcf13',
+        }, 
+        buttonText: {
+          light: '#fe7600',
+          dark: '#ffffff',
         },
         buttonBg: {
           light: '#FCFDFD',

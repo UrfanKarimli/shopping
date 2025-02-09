@@ -77,6 +77,7 @@ const selectItemSlice = createSlice({
             saveToCookies(state.selectedData);
         },
 
+        
         // Məhsulu tamamilə səbətdən çıxarmaq
         removeFromCart(state, action: PayloadAction<number>) {
             state.selectedData = state.selectedData.filter(

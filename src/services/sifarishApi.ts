@@ -1,29 +1,18 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-
-interface Product {
-    id: number;
-    title: string;
-    price: number;
-    description: string;
-    category: string;
-    image: string;
-    rating: {
-        rate: number;
-        count: number;
-    };
-}
+import { GetProductsType } from '@/types';
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
 export const sifarishApi = createApi({
     reducerPath: 'products',
-    baseQuery: fetchBaseQuery({ baseUrl: 'https://fakestoreapi.com/' }),
+    baseQuery: fetchBaseQuery({ baseUrl: baseUrl }),
     endpoints: (builder) => ({
-        getProducts: builder.query<Product[], void>({
+        getProducts: builder.query<GetProductsType, void>({
             query: () => "/products"
         }),
-        getProductById: builder.query<Product, number>({
+        getProductById: builder.query<GetProductsType, number>({
             query: (id) => `/products/${id}`
         }),
-        updatePost: builder.mutation<Product, Partial<Product>>({
+        updatePost: builder.mutation<GetProductsType, Partial<GetProductsType>>({
             query: (newData) => ({
                 url: 'posts',
                 method: 'POST',

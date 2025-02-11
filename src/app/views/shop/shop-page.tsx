@@ -12,7 +12,7 @@ import { useGetProductsQuery } from '@/services/sifarishApi';
 export default function Shop() {
 
     const { data } = useGetProductsQuery()
-    const sliceData = data?.slice(1, 5)
+    const sliceData = data?.products?.slice(1, 5)
 
     return (
         <div className=' container mt-2  '>

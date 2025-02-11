@@ -2,28 +2,18 @@
 
 import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
-import Link from 'next/link'
 import { PiHeartStraightDuotone, PiHeartStraightFill } from 'react-icons/pi';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleLikedAd } from '@/store/liketItemSlice';
 import { RootState } from '@/store/store'
 import { addToCart } from '@/store/selectItemSlice'
 import { message, Tooltip, Rate } from 'antd';
-interface Product {
-    id: number;
-    title: string;
-    price: number;
-    description: string;
-    category: string;
-    image: string;
-    rating: {
-        rate: number;
-        count: number;
-    };
-    quantity?: number;
-}
+import { ProductType } from '@/types';
+import { toggleModal } from '@/store/modalSlice';
+import { setSelectedProduct } from '@/store/modalProductSlice';
 
-export default function ItemCard({ item }: { item: Product }) {
+
+export default function ItemCard({ item }: { item: ProductType }) {
     const dispatch = useDispatch();
     const likedAds = useSelector((state: RootState) => state.likedItems.likedData);
     const [isLiked, setIsLiked] = useState(false);
@@ -51,13 +41,19 @@ export default function ItemCard({ item }: { item: Product }) {
         info()
     }
 
+
+    const handleCardClick = () => {
+      dispatch(setSelectedProduct(item));
+      dispatch(toggleModal({ idx: 0, target: true }));
+    };
+
     return (
         <div className=' relative w-full h-[290p]   rounded-[7px] p-2'>{contextHolder}
-            <Link href={`#`} target="_blank" rel="noopener noreferrer" className='relative font-arial w-full h-full rounded-[7px] align-top  flex flex-col bg-white overflow-hidden hover:shadow-shadow-hover shadow-custom-light'>
+            <div onClick={handleCardClick}  className='relative cursor-pointer font-arial w-full h-full rounded-[7px] align-top  flex flex-col bg-white overflow-hidden hover:shadow-shadow-hover shadow-custom-light'>
                 <div className="img-box relative w-full  h-[181px]  overflow-hidden flex items-center justify-center">
                     <Image
-                        src={item.image}
-                        alt={item.title}
+                        src={item?.thumbnail}
+                        alt={item?.title}
                         className='object-center object-cover h-full w-[200px] '
                         width={200}
                         height={181}
@@ -72,10 +68,9 @@ export default function ItemCard({ item }: { item: Product }) {
                         <span className=' text-[#484848] mr-1'> Magaza adi</span>
                         {item.description}
                     </h3>
-                    <span> <Rate disabled defaultValue={item.rating.rate} />({item.rating.rate})</span>
+                    <span> <Rate disabled defaultValue={item.rating} />({item.rating})</span>
                 </div>
-            </Link>
-
+            </div>
             <button
                 onClick={handleLikeToggle}
                 className='bg-transparent absolute top-[10px] right-[10px] z-10'
@@ -85,7 +80,7 @@ export default function ItemCard({ item }: { item: Product }) {
                         {isLiked ? (
                             <PiHeartStraightFill className='h-7 w-7 text-[#ff4f08]' />
                         ) : (
-                            <PiHeartStraightDuotone className='h-7 w-7 text-[#c7c7c7]' />
+                            <PiHeartStraightDuotone className='h-7 w-7 text-[#c7c7c7] hover:text-[#ff4f08]' />
                         )}
                     </span>
                 </Tooltip>

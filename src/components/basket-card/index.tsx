@@ -9,21 +9,10 @@ import { Popover } from 'antd';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
 import { toggleLikedAd } from '@/store/liketItemSlice';
-interface Product {
-    id: number;
-    title: string;
-    price: number;
-    description: string;
-    category: string;
-    image: string;
-    rating: {
-        rate: number;
-        count: number;
-    };
-    quantity?: number;
-}
+import { ProductType } from '@/types';
 
-export default function BasketCard({ item }: { item: Product }) {
+
+export default function BasketCard({ item }: { item: ProductType }) {
     const likedData = useSelector((state: RootState) => state.likedItems.likedData);
     const [isLiked, setIsLiked] = useState(false);
     const dispatch = useDispatch();
@@ -78,7 +67,7 @@ export default function BasketCard({ item }: { item: Product }) {
                 <div className=' flex flex-col'>
                     <div className='h-[150px] w-[100px] flex items-center justify-center' >
                         <Image
-                            src={item?.image}
+                            src={item?.thumbnail}
                             alt={item?.title}
                             width={100}
                             height={150}

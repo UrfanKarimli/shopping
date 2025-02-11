@@ -7,7 +7,7 @@ import { AntdRegistry } from '@ant-design/nextjs-registry';
 import { Suspense } from 'react';
 import Loading from './loading';
 import { Providers } from './providers';
-
+import DetailsModal from '@/components/details-modal';
 
 export const metadata: Metadata = {
   title: 'Shopping commerce site',
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 };
 
 export default async function LocaleLayout({ children}: {children: React.ReactNode;}) {
-
+  
   // Mesajların alınması
   const locale = await getLocale();
   const messages = await getMessages();
@@ -33,6 +33,7 @@ export default async function LocaleLayout({ children}: {children: React.ReactNo
             <Suspense fallback={<Loading />}>
               <main className="flex-grow">{children}</main>
             </Suspense>
+            <DetailsModal/>
           </AntdRegistry>
         </NextIntlClientProvider>
         </Providers>

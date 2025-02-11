@@ -8,7 +8,9 @@ import { VscLoading } from "react-icons/vsc";
 
 const SecondCarusel = () => {
 
+    
     const { data, isLoading } = useGetProductsQuery()
+    const sliceData = data?.products.slice(4, 19)
     if (isLoading) return <p className=" w-full h-52 flex items-center justify-center "><VscLoading className=" w text-headText-light animate-spin  h-7 w-7 " /></p>;
 
     return (
@@ -21,7 +23,7 @@ const SecondCarusel = () => {
                 slidesToScroll={3}
                 className="custom-carousel flex gap-2 "
             >
-                {data?.map((item) => (
+                {sliceData?.map((item) => (
                     item && item.id &&
                     (<ItemCard item={item} key={item.id} />)
                 ))}

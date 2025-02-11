@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Modal } from 'antd';
 import { GoSearch } from "react-icons/go";
 
+
 const SearchModal: React.FC = () => {
     const [isModalOpen, setIsModalOpen] = useState([false, false]);
 

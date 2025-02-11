@@ -8,13 +8,11 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "fakestoreapi.com",
-        pathname: "/img/**",
+        hostname: "cdn.dummyjson.com", // Düzgün hostname
+        pathname: "/products/images/**", // Daha geniş range
       },
     ],
   },
-  /* config options here */
 };
 
 export default withNextIntl(nextConfig);
-

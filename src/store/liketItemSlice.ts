@@ -2,27 +2,13 @@
 
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import Cookies from 'js-cookie';
-
-// Liked ad state interfeysi
-interface LikedAd {
-    id: number;
-    title: string;
-    price: number;
-    description: string;
-    category: string;
-    image: string;
-    rating: {
-        rate: number;
-        count: number;
-    };
-}
-
+import { ProductType } from '@/types';
 interface LikedAdState {
-    likedData: LikedAd[];
+    likedData: ProductType[];
 }
 
 // Cookies-dən əvvəlki veriləri götürən funksiya
-const getStoredLikedData = (): LikedAd[] => {
+const getStoredLikedData = (): ProductType[] => {
     if (typeof window === "undefined") return []; // SSR zamanı səhv almamaq üçün
     const storedData = Cookies.get("likedSifarishData");
     return storedData ? JSON.parse(storedData) : [];
@@ -34,7 +20,7 @@ const initialState: LikedAdState = {
 };
 
 // Cookies-ə məlumatı yazan funksiya
-const saveToCookies = (likedData: LikedAd[]) => {
+const saveToCookies = (likedData: ProductType[]) => {
     Cookies.set("likedSifarishData", JSON.stringify(likedData), { expires: 7 });
 };
 
@@ -43,7 +29,7 @@ const likedAdSlice = createSlice({
     name: "likedAd",
     initialState,
     reducers: {
-        toggleLikedAd(state, action: PayloadAction<LikedAd>) {
+        toggleLikedAd(state, action: PayloadAction<ProductType>) {
             const exists = state.likedData.some(ad => ad.id === action.payload.id);
             if (exists) {
                 state.likedData = state.likedData.filter(ad => ad.id !== action.payload.id);

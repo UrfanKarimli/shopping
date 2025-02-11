@@ -2,27 +2,14 @@
 
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import Cookies from "js-cookie";
-
-interface SelectedItem {
-    id: number;
-    title: string;
-    price: number;
-    description: string;
-    category: string;
-    image: string;
-    rating: {
-        rate: number;
-        count: number;
-    };
-    quantity?: number; 
-}
+import { ProductType } from '@/types';
 
 interface SelectedItemState {
-    selectedData: SelectedItem[];
+    selectedData: ProductType[];
 }
 
 // Cookies-dən əvvəlki seçilmiş veriləri götürən funksiya
-const getStoredSelectedData = (): SelectedItem[] => {
+const getStoredSelectedData = (): ProductType[] => {
     if (typeof window === "undefined") return []; // SSR zamanı səhv almamaq üçün
     const storedData = Cookies.get("selectedSifarishData");
     return storedData ? JSON.parse(storedData) : [];
@@ -34,7 +21,7 @@ const initialState: SelectedItemState = {
 };
 
 // Cookies-ə məlumatı yazan funksiya
-const saveToCookies = (selectedData: SelectedItem[]) => {
+const saveToCookies = (selectedData: ProductType[]) => {
     Cookies.set("selectedSifarishData", JSON.stringify(selectedData), { expires: 7 });
 };
 
@@ -44,7 +31,7 @@ const selectItemSlice = createSlice({
     initialState,
     reducers: {
         // Məhsulu səbətə əlavə və ya sayını artırma
-        addToCart(state, action: PayloadAction<SelectedItem>) {
+        addToCart(state, action: PayloadAction<ProductType>) {
             const existingItem = state.selectedData.find(
                 (item) => item.id === action.payload.id
             );

@@ -7,6 +7,7 @@ import { VscLoading } from "react-icons/vsc";
 export default function AllDatas() {
     const { data, isLoading } = useGetProductsQuery();
 
+    console.log(data)
     if (isLoading)
         return (
             <div className="w-full h-[30vh] flex items-center justify-center">
@@ -21,7 +22,7 @@ export default function AllDatas() {
 
     return (
         <div className="grid grid-cols-4">
-            {data?.map(
+            {data?.products.map(
                 (item) => item?.id && <ItemCard item={item} key={item.id} />
             )}
         </div>

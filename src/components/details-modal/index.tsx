@@ -5,14 +5,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from '@/store/store';
 import { toggleModal } from '@/store/modalSlice';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function DetailsModal() {
     const dispatch = useDispatch();
     const isModalOpen = useSelector((state: RootState) => state.modal.isOpen);
     const selectedProduct = useSelector((state: RootState) => state.modalProduct.selectedProduct);
     const [size, setSize] = useState({ width: 0, height: 0 });
-
+    const [showFullDescription, setShowFullDescription] = useState(false);
     const getStockColor = (stock: string | undefined) => {
         switch (stock) {
             case 'In Stock':
@@ -21,9 +21,22 @@ export default function DetailsModal() {
                 return '#ece577';
             default:
                 return '#79fc84'
-
         }
     }
+    useEffect(() => {
+        if (!isModalOpen[0]) {
+            setShowFullDescription(false);
+        }
+    }, [isModalOpen]);
+
+
+    const toggleDescription = () => {
+        setShowFullDescription(!showFullDescription);
+    };
+
+    const isDescriptionLong = (selectedProduct?.description?.length ?? 0) > 60;
+    const displayedDescription = showFullDescription ? selectedProduct?.description : selectedProduct?.description?.substring(0, 60);
+
     return (
         <>
             <Modal
@@ -85,7 +98,12 @@ export default function DetailsModal() {
                             <span className=' '>{selectedProduct?.title}</span>
 
                         </div>
-                        <span>{selectedProduct?.description}</span>
+                        <span className=' whitespace-pre-wrap '> {displayedDescription}
+                        {isDescriptionLong && (
+                            <button onClick={toggleDescription} className="ml-2 text-[#949392] font-normal font-lato text-base hover:text-sky-500">
+                                {showFullDescription ? "Less view" : "...More view"}
+                            </button>
+                        )}</span>
                         <span> <Rate style={{ fontSize: '16px' }} disabled defaultValue={selectedProduct?.rating} />{selectedProduct?.rating} </span>
                         <span className=' text-green-600 font-semibold '>{selectedProduct?.price} azn</span>
 
@@ -93,7 +111,7 @@ export default function DetailsModal() {
                         <span> Qarantiya{selectedProduct?.warrantyInformation} </span>
                         <span> Çatdırılma {selectedProduct?.shippingInformation} </span>
                         <span
-                        className=' text-white inline p-px self-start'
+                            className=' text-white inline p-1 self-start'
                             style={{ backgroundColor: getStockColor(selectedProduct?.availabilityStatus) }}
                         >{selectedProduct?.availabilityStatus} </span>
                     </div>

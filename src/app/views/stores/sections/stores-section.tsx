@@ -24,7 +24,7 @@ export default function StoresSections() {
                 </Link>
             </div>
             <div className=' '>
-                <Link href={'/shop'}  >
+                <Link href={'/shop/zoomarket'}  >
                     <div className='border border-border-light  rounded-xl overflow-hidden '>
                         <figure className=''>
                             <div className={`w-full bg-[url('/fill.jpg')] bg-no-repeat bg-cover `}>

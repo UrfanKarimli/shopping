@@ -1,4 +1,4 @@
-import { addToCart, decreaseQuantity, removeFromCart } from '@/store/selectItemSlice';
+import { addToCart, decreaseQuantity, removeFromCart } from '@/store/slicers/selectItemSlice';
 import Image from 'next/image'
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react'
@@ -8,7 +8,7 @@ import { FaHeart, FaMinus, FaPlus } from "react-icons/fa6";
 import { Popover } from 'antd';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
-import { toggleLikedAd } from '@/store/liketItemSlice';
+import { toggleLikedAd } from '@/store/slicers/liketItemSlice';
 import { ProductType } from '@/types';
 
 
@@ -17,7 +17,7 @@ export default function BasketCard({ item }: { item: ProductType }) {
     const [isLiked, setIsLiked] = useState(false);
     const dispatch = useDispatch();
 
-    
+
     useEffect(() => {
         if (item && item.id) {
             setIsLiked(likedData.some((i) => i.id === item.id));

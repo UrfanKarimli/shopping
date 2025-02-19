@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { GetProductsType } from '@/types';
+import { GetProductsType , ProductType } from '@/types';
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
 export const sifarishApi = createApi({
@@ -9,7 +9,7 @@ export const sifarishApi = createApi({
         getProducts: builder.query<GetProductsType, void>({
             query: () => "/products"
         }),
-        getProductById: builder.query<GetProductsType, number>({
+        getProductById: builder.query<ProductType, number>({
             query: (id) => `/products/${id}`
         }),
         updatePost: builder.mutation<GetProductsType, Partial<GetProductsType>>({
@@ -23,3 +23,4 @@ export const sifarishApi = createApi({
 });
 
 export const { useGetProductsQuery, useGetProductByIdQuery, useUpdatePostMutation } = sifarishApi;
+

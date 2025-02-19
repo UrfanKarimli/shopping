@@ -7,7 +7,6 @@ import { VscLoading } from "react-icons/vsc";
 export default function AllDatas() {
     const { data, isLoading } = useGetProductsQuery();
 
-    console.log(data)
     if (isLoading)
         return (
             <div className="w-full h-[30vh] flex items-center justify-center">

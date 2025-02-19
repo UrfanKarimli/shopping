@@ -2,26 +2,28 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { sifarishApi } from '@/services/sifarishApi';
 import { locationApi } from '@/services/locationApi';
-import likedReducer from './liketItemSlice';
-import  selectedReducer from './selectItemSlice'
-import localeReducer from "./localeSlice";
-import modalReducer from "./modalSlice";
-import modalProductReducer from './modalProductSlice'
+import likedReducer from './slicers/liketItemSlice';
+import selectedReducer from './slicers/selectItemSlice'
+import localeReducer from "./slicers/localeSlice";
+import modalReducer from "./slicers/modalSlice";
+import modalProductReducer from './slicers/modalProductSlice'
+import imgModalReducer from './slicers/imgModalSlice'
 
 export const store = configureStore({
     reducer: {
         likedItems: likedReducer,
-        selectedItems: selectedReducer ,
+        selectedItems: selectedReducer,
         localeLang: localeReducer,
         modal: modalReducer,
         modalProduct: modalProductReducer,
+        imgModal: imgModalReducer,
         [sifarishApi.reducerPath]: sifarishApi.reducer, // RTK Query api reducer
-        [locationApi.reducerPath]: locationApi.reducer, // locationApi reducer əlavə edirik
+        [locationApi.reducerPath]: locationApi.reducer, // locationApi reducer
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware().concat(
             sifarishApi.middleware, // sifarishApi middleware
-            locationApi.middleware // locationApi middleware əlavə edirik
+            locationApi.middleware // locationApi middleware 
         ),
 });
 

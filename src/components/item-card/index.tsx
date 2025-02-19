@@ -4,13 +4,12 @@ import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
 import { PiHeartStraightDuotone, PiHeartStraightFill } from 'react-icons/pi';
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleLikedAd } from '@/store/liketItemSlice';
+import { toggleLikedAd } from '@/store/slicers/liketItemSlice';
 import { RootState } from '@/store/store'
-import { addToCart } from '@/store/selectItemSlice'
+import { addToCart } from '@/store/slicers/selectItemSlice'
 import { message, Tooltip, Rate } from 'antd';
 import { ProductType } from '@/types';
-import { toggleModal } from '@/store/modalSlice';
-import { setSelectedProduct } from '@/store/modalProductSlice';
+import Link from 'next/link';
 
 
 export default function ItemCard({ item }: { item: ProductType }) {
@@ -41,15 +40,9 @@ export default function ItemCard({ item }: { item: ProductType }) {
         info()
     }
 
-
-    const handleCardClick = () => {
-      dispatch(setSelectedProduct(item));
-      dispatch(toggleModal({ idx: 0, target: true }));
-    };
-
     return (
         <div className=' relative w-full h-[290p]   rounded-[7px] p-2'>{contextHolder}
-            <div onClick={handleCardClick}  className='relative cursor-pointer font-arial w-full h-full rounded-[7px] align-top  flex flex-col bg-white overflow-hidden hover:shadow-shadow-hover shadow-custom-light'>
+            <Link href={`/details/${item.id}`} className='relative cursor-pointer font-arial w-full h-full rounded-[7px] align-top  flex flex-col bg-white overflow-hidden hover:shadow-shadow-hover shadow-custom-light'>
                 <div className="img-box relative w-full  h-[181px]  overflow-hidden flex items-center justify-center">
                     <Image
                         src={item?.thumbnail}
@@ -70,7 +63,7 @@ export default function ItemCard({ item }: { item: ProductType }) {
                     </h3>
                     <span> <Rate disabled defaultValue={item.rating} />({item.rating})</span>
                 </div>
-            </div>
+            </Link>
             <button
                 onClick={handleLikeToggle}
                 className='bg-transparent absolute top-[10px] right-[10px] z-10'

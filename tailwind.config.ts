@@ -62,6 +62,7 @@ export default {
           light: '#FCFDFD',
           dark: '#323D4E'
         },
+        customGray : '#949392'
       },
        animation: {
                 slide: "slide 1.5s linear infinite",

@@ -3,7 +3,7 @@
 import { Modal, Rate } from 'antd';
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from '@/store/store';
-import { toggleModal } from '@/store/modalSlice';
+import { toggleModal } from '@/store/slicers/modalSlice';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
@@ -13,6 +13,7 @@ export default function DetailsModal() {
     const selectedProduct = useSelector((state: RootState) => state.modalProduct.selectedProduct);
     const [size, setSize] = useState({ width: 0, height: 0 });
     const [showFullDescription, setShowFullDescription] = useState(false);
+
     const getStockColor = (stock: string | undefined) => {
         switch (stock) {
             case 'In Stock':
@@ -99,11 +100,11 @@ export default function DetailsModal() {
 
                         </div>
                         <span className=' whitespace-pre-wrap '> {displayedDescription}
-                        {isDescriptionLong && (
-                            <button onClick={toggleDescription} className="ml-2 text-[#949392] font-normal font-lato text-base hover:text-sky-500">
-                                {showFullDescription ? "Less view" : "...More view"}
-                            </button>
-                        )}</span>
+                            {isDescriptionLong && (
+                                <button onClick={toggleDescription} className="ml-2 text-[#949392] font-normal font-lato text-base hover:text-sky-500">
+                                    {showFullDescription ? "Less view" : "...More view"}
+                                </button>
+                            )}</span>
                         <span> <Rate style={{ fontSize: '16px' }} disabled defaultValue={selectedProduct?.rating} />{selectedProduct?.rating} </span>
                         <span className=' text-green-600 font-semibold '>{selectedProduct?.price} azn</span>
 

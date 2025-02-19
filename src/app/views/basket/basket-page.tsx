@@ -5,9 +5,9 @@ import ItemCard from '@/components/item-card';
 import { RootState } from '@/store/store';
 import React from 'react'
 import { useSelector } from 'react-redux';
-import { clearCart } from '@/store/selectItemSlice';
+import { clearCart } from '@/store/slicers/selectItemSlice';
 import { useDispatch } from 'react-redux';
-import { clearLikedAds } from '@/store/liketItemSlice';
+import { clearLikedAds } from '@/store/slicers/liketItemSlice';
 
 export default function Basket() {
     const dispatch = useDispatch();
